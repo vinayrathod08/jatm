@@ -1,52 +1,60 @@
-import java.util.Scanner;
-public class ATM_Transaction
-{
-    public static void main(String args[] )
-    { 
-        int balance = 5000, withdraw, deposit;
-        Scanner s = new Scanner(System.in);
-        while(true)
-        {
-            System.out.println("Automated Teller Machine");
-            System.out.println("Choose 1 for Withdraw");
-            System.out.println("Choose 2 for Deposit");
-            System.out.println("Choose 3 for Check Balance");
-            System.out.println("Choose 4 for EXIT");
-            System.out.print("Choose the operation you want to perform:");
-            int n = s.nextInt();
-            switch(n)
-            {
-                case 1:
-                System.out.print("Enter money to be withdrawn:");
-                withdraw = s.nextInt();
-                if(balance >= withdraw)
-                {
-                    balance = balance - withdraw;
-                    System.out.println("Please collect your money");
-                }
-                else
-                {
-                    System.out.println("Insufficient Balance");
-                }
-                System.out.println("");
-                break;
- 
-                case 2:
-                System.out.print("Enter money to be deposited:");
-                deposit = s.nextInt();
-                balance = balance + deposit;
-                System.out.println("Your Money has been successfully depsited");
-                System.out.println("");
-                break;
- 
-                case 3:
-                System.out.println("Balance : "+balance);
-                System.out.println("");
-                break;
- 
-                case 4:
-                System.exit(0);
-            }
-        }
-    }
+// Java Program to Display the ATM Transaction 
+import java.io.*; 
+public class GFG { 
+
+	// Display current balance in account 
+	public static void displayBalance(int balance) 
+	{ 
+		System.out.println("Current Balance : " + balance); 
+		System.out.println(); 
+	} 
+
+	// Withdraw amount and update the balance 
+	public static int amountWithdrawing(int balance, 
+										int withdrawAmount) 
+	{ 
+		System.out.println("Withdrawn Operation:"); 
+		System.out.println("Withdrawing Amount : "
+						+ withdrawAmount); 
+		if (balance >= withdrawAmount) { 
+			balance = balance - withdrawAmount; 
+			System.out.println( 
+				"Please collect your money and collect the card"); 
+			displayBalance(balance); 
+		} 
+		else { 
+			System.out.println("Sorry! Insufficient Funds"); 
+			System.out.println(); 
+		} 
+		return balance; 
+	} 
+
+	// Deposit amount and update the balance 
+	public static int amountDepositing(int balance, 
+									int depositAmount) 
+	{ 
+		System.out.println("Deposit Operation:"); 
+		System.out.println("Depositing Amount : "
+						+ depositAmount); 
+		balance = balance + depositAmount; 
+		System.out.println( 
+			"Your Money has been successfully deposited"); 
+		displayBalance(balance); 
+		return balance; 
+	} 
+
+	public static void main(String args[]) 
+	{ 
+		int balance = 10000; 
+		int withdrawAmount = 5000; 
+		int depositAmount = 2000; 
+
+		// calling display balance 
+		displayBalance(balance); 
+		// withdrawing amount 
+		balance 
+			= amountWithdrawing(balance, withdrawAmount); 
+		// depositing amount 
+		balance = amountDepositing(balance, depositAmount); 
+	} 
 }
